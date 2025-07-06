@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getProducts } from '../services/api';
+import '../ProductList.css'; 
 
 function ProductList() {
   const [products, setProducts] = useState([]);
@@ -13,28 +14,19 @@ function ProductList() {
   return (
     <div>
       <h2>Product List</h2>
-      <table border="1" cellPadding="8">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>SKU</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>CategoryId</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map(p => (
-            <tr key={p.id}>
-              <td>{p.name}</td>
-              <td>{p.sku}</td>
-              <td>{p.price}</td>
-              <td>{p.quantity}</td>
-              <td>{p.categoryId}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="product-grid">
+        {products.map(p => (
+          <div className="product-card" key={p.id}>
+            <img 
+              src="" 
+              alt={p.name} 
+              className="product-image"
+            />
+            <div className="product-name">{p.name}</div>
+            <div className="product-price">${p.price}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
